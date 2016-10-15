@@ -40,8 +40,11 @@ namespace MVC5Course.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
+            var client = new Client()
+            { Gender = "F" };
+
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName");
-            return View();
+            return View(client);
         }
 
         // POST: Clients/Create
