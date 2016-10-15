@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using MVC5Course.Models.ViewModels;
 
 namespace MVC5Course.Controllers
 {
@@ -17,6 +18,8 @@ namespace MVC5Course.Controllers
         // GET: Clients
         public ActionResult Index(string search)
         {
+            
+
             var client = db.Client.Include(c => c.Occupation);
             List<Client> clients;
             if (string.IsNullOrEmpty(search))
@@ -28,7 +31,8 @@ namespace MVC5Course.Controllers
                 clients = client.Where(c => c.FirstName == search).OrderByDescending(c => c.ClientId).Take(10).ToList();
             }
 
-            
+            ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName");
+
             return View(clients);
         }
 
@@ -48,6 +52,7 @@ namespace MVC5Course.Controllers
         }
 
         // GET: Clients/Create
+        [ChildActionOnly]
         public ActionResult Create()
         {
             var client = new Client()
@@ -132,6 +137,17 @@ namespace MVC5Course.Controllers
             db.Client.Remove(client);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(ClientLoginViewModel Client)
+        {
+            return View("LoginResult", Client);
         }
 
         protected override void Dispose(bool disposing)
