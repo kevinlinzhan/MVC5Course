@@ -15,10 +15,20 @@ namespace MVC5Course.Controllers
         private FabricsEntities db = new FabricsEntities();
 
         // GET: Clients
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
             var client = db.Client.Include(c => c.Occupation);
-            var clients = client.OrderByDescending(c => c.ClientId).Take(10).ToList();
+            List<Client> clients;
+            if (string.IsNullOrEmpty(search))
+            {
+                clients = client.OrderByDescending(c => c.ClientId).Take(10).ToList();
+            }
+            else
+            {
+                clients = client.Where(c => c.FirstName == search).OrderByDescending(c => c.ClientId).Take(10).ToList();
+            }
+
+            
             return View(clients);
         }
 
