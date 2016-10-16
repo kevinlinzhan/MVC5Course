@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create") | 
+    @Html.ActionLink("add 20%", "Add20Percent")
 </p>
 <table class="table">
     <tr>
@@ -30,6 +31,7 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ProductName)
+            @Html.ActionLink("加驚嘆號", "Update", new { id = item.ProductId})
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
