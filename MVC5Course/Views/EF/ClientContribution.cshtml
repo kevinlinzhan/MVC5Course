@@ -1,14 +1,13 @@
-﻿@model IEnumerable<MVC5Course.Models.Product>
+﻿@model IEnumerable<MVC5Course.Models.vw_ClientContribution>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ClientContribution";
 }
 
-<h2>Index</h2>
+<h2>ClientContribution</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create") | 
-    @Html.ActionLink("add 20%", "Add20Percent")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -25,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Stock)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsDelete)
+            @Html.DisplayNameFor(model => model.OrderTotal)
         </th>
         <th></th>
     </tr>
@@ -34,7 +33,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ProductName)
-            @Html.ActionLink("加驚嘆號", "Update", new { id = item.ProductId})
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
@@ -46,12 +44,12 @@
             @Html.DisplayFor(modelItem => item.Stock)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsDelete)
+            @Html.DisplayFor(modelItem => item.OrderTotal)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

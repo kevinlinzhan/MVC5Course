@@ -39,6 +39,9 @@ namespace MVC5Course.Controllers
         public ActionResult Delete(int id)
         {
             var product = db.Product.Find(id);
+            
+            db.OrderLine.RemoveRange(product.OrderLine);
+
             db.Product.Remove(product);
             db.SaveChanges();
 
@@ -61,6 +64,11 @@ namespace MVC5Course.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
         public ActionResult Add20Percent()
         {
             var data = db.Product.Where(p => p.ProductName.Contains("White") || p.ProductName.Contains("Word"));
@@ -76,6 +84,14 @@ namespace MVC5Course.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ClientContribution()
+        {
+            var data = db.vw_ClientContribution.Where(p => p.ProductName.Contains("White") || p.ProductName.Contains("Word")).
+                            OrderByDescending(p => p.ProductId).Take(10);
+
+            return View(data);
         }
     }
 }
