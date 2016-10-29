@@ -67,7 +67,8 @@ namespace MVC5Course.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            var product = db.Product.Find(id);
+            return View(product);
         }
 
         //public ActionResult Add20Percent()
@@ -116,6 +117,14 @@ namespace MVC5Course.Controllers
                 "FROM dbo.Product a                                                        "+
                 "Where ProductName Like @p0",
                 kw);
+
+            return View(data);
+        }
+
+        public ActionResult ClientContribution3(string keyword)
+        {
+            //kw = "%" + kw + "%";
+            var data = db.usp_GetClientContribution(keyword);
 
             return View(data);
         }
