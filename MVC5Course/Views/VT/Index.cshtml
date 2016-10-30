@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = "";
+    ViewBag.Title = "Index";
+
+    int[] data = new int[] { 1, 2, 3, 4, 5 };
+}
+
+<h2>@DateTime.Now</h2>
+
+@foreach(var itme in data)
+{
+    @itme
+}
+        
+                                                                               
+@foreach (var itme in data)
+{
+    @itme <Text> </Text>}
+    
+                                                                                                                           
+<ul>
+@foreach (var itme in data)
+{
+  <li>@itme</li>
+}
+</ul>
