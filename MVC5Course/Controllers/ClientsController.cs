@@ -16,7 +16,7 @@ namespace MVC5Course.Controllers
         private FabricsEntities db = new FabricsEntities();
 
         // GET: Clients
-        public ActionResult Index(string search)
+        public ActionResult Index(string search, int? CreditRating, string Gender)
         {
             
 
@@ -32,6 +32,13 @@ namespace MVC5Course.Controllers
             }
 
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName");
+
+
+
+            var options = (from p in db.Client select p.CreditRating).Distinct().OrderBy(p=> p).ToList();
+            ViewBag.CreditRating = new SelectList(options);
+
+            ViewBag.Gender = new SelectList(new string[] { "M", "F" }, "F");
 
             return View(clients);
         }

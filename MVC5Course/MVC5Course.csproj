@@ -178,10 +178,12 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\EFController.cs" />
+    <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ActionFilter\LocalDebugOnlyAttribute.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MVController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="ActionFilter\ShareDataAttribute.cs" />
     <Compile Include="Controllers\VTController.cs" />
@@ -408,8 +410,20 @@
     <Content Include="Views\Products\ProductList.cshtml" />
     <Content Include="Views\Products\Error_DbEntityValidationException.cshtml" />
     <Content Include="Views\VT\Index.cshtml" />
+    <Content Include="Views\VT\NewIndex.cshtml" />
+    <Content Include="Views\VT\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_LayoutBootstrap.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Form\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Client.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Client.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Bootstrap_Metro_Dashboard-master\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
