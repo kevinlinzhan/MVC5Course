@@ -10,6 +10,8 @@ namespace MVC5Course.Controllers
     public class MVController : Controller
     {
         // GET: MV
+        [ShareData]
+        [LocalDebugOnly]
         public ActionResult Index()
         {
             ViewData["Temp1"] = "暫存資料";
@@ -27,6 +29,7 @@ namespace MVC5Course.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult MyForm(ClientLoginViewModel c)
         {
             if(ModelState.IsValid)

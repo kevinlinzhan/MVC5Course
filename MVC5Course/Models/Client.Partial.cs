@@ -3,7 +3,8 @@ namespace MVC5Course.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+    using ValidationAttributeModel;
+
     [MetadataType(typeof(ClientMetaData))]
     public partial class Client
     {
@@ -25,6 +26,8 @@ namespace MVC5Course.Models
         
         [StringLength(1, ErrorMessage="欄位長度不得大於 1 個字元")]
         public string Gender { get; set; }
+
+        [QualifiedAge(20)]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public Nullable<double> CreditRating { get; set; }
         

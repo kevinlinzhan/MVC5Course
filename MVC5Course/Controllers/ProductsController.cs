@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using MVC5Course.Models.ViewModels;
+using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
@@ -96,6 +98,8 @@ namespace MVC5Course.Controllers
             return View(product);
         }
 
+        
+
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -131,6 +135,47 @@ namespace MVC5Course.Controllers
                 repo.UnitOfWork.Context.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult ProductList()
+        {
+            var data = db.Product.OrderByDescending(p => p.ProductId).Take(5);
+            return View(data);
+        }
+
+        public ActionResult BatchUpdate(ProductBatchUpdateViewModel[] items)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var item in items)
+                {
+                    var product = db.Product.Find(item.ProductId);
+                    product.ProductName = item.ProductName;
+                    product.Active = item.Active;
+                    product.Stock = item.Stock;
+                    product.Price = item.Price;
+                }
+
+                try
+                {
+
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var vErrors in entityErrors.ValidationErrors)
+                        {
+                            throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤：" + vErrors.ErrorMessage);
+                        }
+                    }
+                }
+
+                return RedirectToAction("ProductList");
+            }
+
+            return View();
         }
     }
 }

@@ -14,10 +14,10 @@ namespace MVC5Course.Models
                 yield return new ValidationResult("價格大於1000的商品庫存不能超過1000", new string[] { "Price", "Stock" });
             }
 
-            if (ProductName.Contains("kevin"))
-            {
-                yield return new ValidationResult("注開商標不能使用此名稱", new string[] { "ProductName" });
-            }
+            //if (ProductName.Contains("kevin"))
+            //{
+            //    yield return new ValidationResult("注冊商標不能使用此名稱", new string[] { "ProductName" });
+            //}
         }
     }
 
