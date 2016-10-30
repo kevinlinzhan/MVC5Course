@@ -405,6 +405,7 @@
     <Content Include="Views\MV\MyForm.cshtml" />
     <Content Include="Views\MV\MyFormResult.cshtml" />
     <Content Include="Views\Products\ProductList.cshtml" />
+    <Content Include="Views\Products\Error_DbEntityValidationException.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

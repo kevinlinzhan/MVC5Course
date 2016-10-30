@@ -12,6 +12,8 @@ using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
+    [HandleError(ExceptionType = typeof(DbEntityValidationException), 
+        View = "Error_DbEntityValidationException")]
     public class ProductsController : BaseController
     {
         //private FabricsEntities db = new FabricsEntities();
@@ -145,7 +147,39 @@ namespace MVC5Course.Controllers
 
         public ActionResult BatchUpdate(ProductBatchUpdateViewModel[] items)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            //    foreach (var item in items)
+            //    {
+            //        var product = db.Product.Find(item.ProductId);
+            //        product.ProductName = item.ProductName;
+            //        product.Active = item.Active;
+            //        product.Stock = item.Stock;
+            //        product.Price = item.Price;
+            //    }
+
+            //    try
+            //    {
+
+            //        db.SaveChanges();
+            //    }
+            //    catch (DbEntityValidationException ex)
+            //    {
+            //        foreach (var entityErrors in ex.EntityValidationErrors)
+            //        {
+            //            foreach (var vErrors in entityErrors.ValidationErrors)
+            //            {
+            //                throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤：" + vErrors.ErrorMessage);
+            //            }
+            //        }
+            //    }
+
+            //    return RedirectToAction("ProductList");
+            //}
+
+
+
+            //if (ModelState.IsValid)
             {
                 foreach (var item in items)
                 {
@@ -156,21 +190,7 @@ namespace MVC5Course.Controllers
                     product.Price = item.Price;
                 }
 
-                try
-                {
-
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var entityErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var vErrors in entityErrors.ValidationErrors)
-                        {
-                            throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤：" + vErrors.ErrorMessage);
-                        }
-                    }
-                }
+                db.SaveChanges();
 
                 return RedirectToAction("ProductList");
             }
