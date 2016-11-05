@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using MVC5Course.Models;
 using MVC5Course.Models.ViewModels;
 using System.Data.Entity.Validation;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MVC5Course.Controllers
 {
@@ -21,12 +23,15 @@ namespace MVC5Course.Controllers
         ProductRepository repo = RepositoryHelper.GetProductRepository();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int pageNo = 1)
         {
             //var repo = new ProductRepository();
             //repo.UnitOfWork = new EFUnitOfWork();
 
-            return View(repo.GetTop(10));
+            var data = repo.All().OrderBy(p => p.ProductId).AsQueryable();
+            
+            return View(data.ToPagedList(pageNo, 10));
+            //return View(repo.GetTop(10));
         }
 
         // GET: Products/Details/5
