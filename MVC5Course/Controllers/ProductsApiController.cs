@@ -42,8 +42,22 @@ namespace MVC5Course.Controllers
             return Ok(product);
         }
 
-        // PUT: api/ProductsApi/5
-        [ResponseType(typeof(void))]
+        [Route("prods/{id}/orderlines")]
+         public IHttpActionResult GetProductOrderLine(int id)
+         {
+             db.Configuration.ProxyCreationEnabled = false;
+             Product product = db.Product.Include("OrderLine").FirstOrDefault(p => p.ProductId == id);
+ 
+             if (product == null)
+             {
+                 return NotFound();
+             }
+ 
+             return Ok(product.OrderLine.ToList());
+         }
+
+// PUT: api/ProductsApi/5
+[ResponseType(typeof(void))]
         public IHttpActionResult PutProduct(int id, Product product)
         {
             if (!ModelState.IsValid)
